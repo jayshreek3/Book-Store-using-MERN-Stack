@@ -1,10 +1,12 @@
+import 'dotenv/config';
 import express, { response } from "express"
-import { PORT, mongoDBURL } from './config.js';
 import mongoose from 'mongoose';
 import { Book } from "./models/bookModel.js";
 import bookRoutes from "./routes/bookRoutes.js"
 import cors from 'cors';
 
+const mongoDBURL = process.env.MONGODB_URL;
+const PORT = process.env.PORT;
 // for HTTP server connection
 const app = express()
 
@@ -30,19 +32,17 @@ app.get('/', (request, response) => {
 app.use('/books', bookRoutes)
 
 // to connect DB
-mongoose
-    .connect(mongoDBURL)
+mongoose.connect(mongoDBURL)
     .then(() => {
         console.log("App connected successfully");
-        // Express connection runs only if the DB con is successful
+        // Express connection runs only if the DB connection is successful
         app.listen(PORT, () => {
             console.log(`App is listening to port: ${PORT}`);
         });
     })
     .catch((error) => {
-        console.log(error);
-    })
-
+        console.log('Database connection error:', error);
+    });
 /*
 Notes- Mongoose is a library that allows us to communicate with MongoDB  with JS easily
        Mongoose is a popular Object Data Modeling (ODM) library for MongoDB and Node.js.
