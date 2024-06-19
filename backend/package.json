@@ -5,6 +5,7 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js -p 5000",
     "dev": "nodemon index.js",
     "predeploy": "npm install"
   },
