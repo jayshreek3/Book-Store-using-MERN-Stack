@@ -15,7 +15,11 @@ app.use(express.json());
 
 // Middleware for CORS policy
 // use cors(*) 
-app.use(cors());
+app.use(cors({
+    origin: 'https://book-store-using-mern-stack-8ewd.vercel.app/',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type'],
+  }));
 //or allow custom origins
 // app.use(cors({
 //     origin: '',
