@@ -16,8 +16,12 @@ app.use(express.json());
 // Middleware for CORS policy
 // use cors(*) 
 const allowedOrigins = [
+    '*',
   'http://localhost:5173', // Add your local frontend URL
   'https://book-store-using-mern-stack-8ewd.vercel.app',
+  'https://book-store-using-mern-stack-8ewd.vercel.app/',
+  'https://book-store-using-mern-stack-8ewd-j72p4noer-jayshree-s-projects.vercel.app',
+  'https://book-store-using-mern-stack-8ewd-git-main-jayshree-s-projects.vercel.app',
 ];
 app.use(cors({
     origin: function(origin, callback){
