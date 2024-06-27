@@ -17,7 +17,7 @@ const EditBook = () => {
 
   useEffect(()=>{
     setLoading(true);
-    
+
     const apiURL = "https://book-store-using-mern-stack.onrender.com";
 
     axios
@@ -40,8 +40,9 @@ const EditBook = () => {
       title, author, publishYear
     };
     setLoading(true);
+    const apiURL = "https://book-store-using-mern-stack.onrender.com";
     axios
-      .put(`http://localhost:5555/books/${id}`, data)
+      .put(`${apiURL}/books/${id}`, data)
       .then(() => {
         setLoading(false);
         enqueueSnackbar('Book Edited Successfully', {variant: 'success'})
