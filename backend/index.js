@@ -8,15 +8,27 @@ import cors from 'cors';
 const mongoDBURL = process.env.MONGODB_URL;
 const PORT = process.env.PORT;
 // for HTTP server connection
-const app = express()
+const app = express();
 
 // middleware for parsing req body
 app.use(express.json());
 
 // Middleware for CORS policy
 // use cors(*) 
+const allowedOrigins = [
+  'http://localhost:5173', // Add your local frontend URL
+  'https://book-store-using-mern-stack-8ewd.vercel.app',
+];
 app.use(cors({
-    origin: 'https://book-store-using-mern-stack-8ewd.vercel.app/',
+    origin: function(origin, callback){
+        if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) === -1) {
+      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+      return callback(new Error(msg), false);
+    }
+
+    return callback(null, true);
+},
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type'],
   }));
