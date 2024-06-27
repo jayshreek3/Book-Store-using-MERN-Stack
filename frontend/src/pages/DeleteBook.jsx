@@ -13,8 +13,11 @@ function DeleteBook() {
 
   const handleDeleteBook = () => {
     setLoading(true);
+
+    const apiURL = "https://book-store-using-mern-stack.onrender.com";
+
     axios
-      .delete(`http://localhost:5555/books/${id}`)
+      .delete(`${apiURL}/books/${id}`)
       .then(() => {
         setLoading(false);
         navigate('/')

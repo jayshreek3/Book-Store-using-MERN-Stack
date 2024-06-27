@@ -17,8 +17,11 @@ const EditBook = () => {
 
   useEffect(()=>{
     setLoading(true);
+    
+    const apiURL = "https://book-store-using-mern-stack.onrender.com";
+
     axios
-      .get(`http://localhost:5555/books/${id}`)
+      .get(`${apiURL}/books/${id}`)
       .then((response) =>{
         setTitle(response.data.title);
         setAuthor(response.data.author);

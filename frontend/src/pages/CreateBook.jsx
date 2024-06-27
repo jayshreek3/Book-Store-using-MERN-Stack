@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import {useSnackbar} from 'notistack'
 // states - 3 
 const CreateBook = () => {
+
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
   const [publishYear, setPublishYear] = useState('');
@@ -19,8 +20,9 @@ const CreateBook = () => {
       title, author, publishYear
     };
     setLoading(true);
+    const apiURL = "https://book-store-using-mern-stack.onrender.com";
     axios
-      .post('http://localhost:5555/books', data)
+      .post(`${apiURL}/books`, data)
       .then(() => {
         setLoading(false);
         enqueueSnackbar('Book Created Successfully', {variant: 'success'})

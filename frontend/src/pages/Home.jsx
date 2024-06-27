@@ -15,8 +15,11 @@ const Home = () => {
 
     useEffect(() => { // Defines a React hook 'useEffect' for side effects (data fetching)
         setLoading(true); // Sets loading to true to display a spinner while fetching data
+        
+        const apiURL = "https://book-store-using-mern-stack.onrender.com";
+
         axios
-            .get('http://localhost:5555/books') //GET request from the backend API
+            .get(`${apiURL}/books`) //GET request from the backend API
             .then((response) => {
                 setBooks(response.data.data); // we have 2 ptops in BS for Book- count and data
                 setLoading(false);
